@@ -49,5 +49,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
+    // 打开微信
+    button2.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent launchIntent = getPackageManager()
+            .getLaunchIntentForPackage("com.tencent.mm");
+        if (launchIntent != null) {
+          startActivity(launchIntent); // null pointer check in case package name was not found
+        }
+      }
+    });
+    button3.setEnabled(false);
   }
 }

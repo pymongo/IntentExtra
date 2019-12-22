@@ -1,7 +1,6 @@
 <resources>
   <string name="app_name">IntentExtra</string>
-  <string name="gotoActivity1">gotoActivity1</string>
-  <string name="gotoActivity2">gotoActivity2</string>
+  <string name="openWechat">打开微信</string>
   <string name="gotoActivity3">gotoActivity3</string>
   <string name="sendMessageToActivity2">sendMessageToActivity2</string>
   <string name="message">Message From Activity1</string>
