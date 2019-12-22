@@ -3,6 +3,7 @@ package com.example.intentextra;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,8 +52,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
       }
     });
-    button3.setEnabled(false);
-
+    // 通过默认浏览器打开链接
+    button3.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.raspberrypi.org"));
+        startActivity(browserIntent);
+      }
+    });
   }
 
 }
