@@ -4,15 +4,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".MainActivity">
+  tools:context=".DisplayMessageActivity">
 
-  <EditText
-    android:id="@+id/editText"
+  <TextView
+    android:id="@+id/textView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="100dp"
     android:ems="10"
-    android:inputType="textPersonName"
     android:text="@string/message"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +22,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="100dp"
-    android:text="@string/sendMessageToActivity2"
+    android:text="@string/gotoActivity1"
     android:textAllCaps="false"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

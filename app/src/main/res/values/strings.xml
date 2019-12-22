@@ -3,5 +3,6 @@
   <string name="gotoActivity1">gotoActivity1</string>
   <string name="gotoActivity2">gotoActivity2</string>
   <string name="gotoActivity3">gotoActivity3</string>
-  <string name="gotoActivity4">gotoActivity4</string>
+  <string name="sendMessageToActivity2">sendMessageToActivity2</string>
+  <string name="message">Message From Activity1</string>
 </resources>
