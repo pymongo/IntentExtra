@@ -39,7 +39,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     // 设置完主题后，让View的一些文案与当前主题一致，如标题、ToggleButton的状态
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_second);
     // ActionBar title
     if (isDarkTheme) {
       setTitle(TAG+"当前主题：深色主题");
