@@ -1,7 +1,10 @@
 <resources>
   <string name="app_name">IntentExtra</string>
+  <string name="sendMessageToActivity2">sendMessageToActivity2</string>
   <string name="openWechat">打开微信</string>
   <string name="openRaspberrypiSite">打开树莓派官网</string>
-  <string name="sendMessageToActivity2">sendMessageToActivity2</string>
+  <string name="toggleTheme">切换主题</string>
   <string name="message">Message From Activity1</string>
+  <string name="turnOffDarkMode">关闭深色主题</string>
+  <string name="turnOnDarkMode">开启深色主题</string>
 </resources>

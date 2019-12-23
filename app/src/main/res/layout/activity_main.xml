@@ -51,4 +51,15 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="@+id/button2" />
 
+  <ToggleButton
+    android:id="@+id/button4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp"
+    android:textOn="@string/turnOffDarkMode"
+    android:textOff="@string/turnOnDarkMode"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/button3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

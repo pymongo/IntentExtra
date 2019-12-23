@@ -3,13 +3,16 @@ package com.example.intentextra;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.Objects;
 
@@ -21,7 +24,7 @@ import java.util.Objects;
  *  */
 public class MainActivity extends AppCompatActivity {
 
-  public static final String TAG = "Activity1: MainActivity";
+  public static final String TAG = "Activity1 ";
   public static final String EXTRA_MESSAGE_KEY = "com.example.intentextra.message";
 
   public void sendToast(CharSequence Message) {
@@ -31,10 +34,28 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    // setTheme is Before setContentView
+    // 会创建一个名为config.xml的key-value pairs存储文件
+    final SharedPreferences configSP = getSharedPreferences("config", MODE_PRIVATE);
+    final boolean isDarkTheme = configSP.getBoolean("darkTheme", true);
+    // SharedPreferences获取值的方法都有默认值，不需要通过.contains判断key是否存在
+    if (isDarkTheme) {
+      setTheme(R.style.Theme_AppCompat);
+    } else {
+      setTheme(R.style.Theme_AppCompat_Light);
+    }
 
+    // 设置完主题后，让View的一些文案与当前主题一致，如标题、ToggleButton的状态
+    setContentView(R.layout.activity_main);
+    // View初始化完后，让主题的toggleButton状态与isDarkTheme一致
+    ToggleButton toggleTheme = findViewById(R.id.button4);
+    toggleTheme.setChecked(isDarkTheme);
     // ActionBar title
-    setTitle(TAG);
+    if (isDarkTheme) {
+      setTitle(TAG+"当前主题：深色主题");
+    } else {
+      setTitle(TAG+"当前主题：白色主题");
+    }
 
     final EditText editText = findViewById(R.id.editText);
     Button button1 = findViewById(R.id.button1);
@@ -69,5 +90,31 @@ public class MainActivity extends AppCompatActivity {
         startActivity(browserIntent);
       }
     });
+    // toggle深色主题
+    toggleTheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+          // setTheme(R.style.Theme_AppCompat);
+          // step.1 修改配置
+          configSP.edit().putBoolean("darkTheme", true).apply();
+          // step.2 如果配置项有变化Reload Activity使主题修改生效
+          if (!isDarkTheme) {
+            finish();
+            startActivity(getIntent());
+          }
+        } else {
+          // setTheme(R.style.Theme_AppCompat_Light);
+          // step.1 修改配置
+          configSP.edit().putBoolean("darkTheme", false).apply();
+          // step.2 如果配置项有变化Reload Activity使主题修改生效
+          if (isDarkTheme) {
+            finish();
+            startActivity(getIntent());
+          }
+        }
+      }
+    });
+
   }
 }
