@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
     toggleTheme.setChecked(isDarkTheme);
     // ActionBar title
     if (isDarkTheme) {
-      setTitle(TAG+"当前主题：深色主题");
+      setTitle(TAG + "当前主题：深色主题");
     } else {
-      setTitle(TAG+"当前主题：白色主题");
+      setTitle(TAG + "当前主题：白色主题");
     }
 
     final EditText editText = findViewById(R.id.editText);

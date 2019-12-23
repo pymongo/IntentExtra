@@ -42,15 +42,15 @@ public class SecondActivity extends AppCompatActivity {
     setContentView(R.layout.activity_second);
     // ActionBar title
     if (isDarkTheme) {
-      setTitle(TAG+"当前主题：深色主题");
+      setTitle(TAG + "当前主题：深色主题");
     } else {
-      setTitle(TAG+"当前主题：白色主题");
+      setTitle(TAG + "当前主题：白色主题");
     }
 
     TextView textView = findViewById(R.id.textView);
     if (getIntent().hasExtra(EXTRA_MESSAGE_KEY)) {
       String message = Objects.requireNonNull(getIntent().getExtras()).getString(EXTRA_MESSAGE_KEY);
-      sendToast("get message from Activity1: "+message);
+      sendToast("get message from Activity1: " + message);
       textView.setText(message);
     }
 
