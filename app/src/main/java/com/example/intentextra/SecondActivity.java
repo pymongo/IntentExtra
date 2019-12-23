@@ -15,7 +15,7 @@ import android.widget.ToggleButton;
 
 import java.util.Objects;
 
-public class DisplayMessageActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
   public static final String EXTRA_MESSAGE_KEY = "com.example.intentextra.message";
   public static final String TAG = "Activity2 ";

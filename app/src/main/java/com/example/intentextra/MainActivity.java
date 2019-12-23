@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.util.Objects;
 
 /* 发现SDK23(安卓6.0)依然有各种遗留问题
  * 如EditText组件抛出警告：缺少autoFillHints属性，当我加上时又提示只有SDK26+才支持这个属性...
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     button1.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), DisplayMessageActivity.class);
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         String message = editText.getText().toString();
         // key-value pairs
         intent.putExtra(EXTRA_MESSAGE_KEY, message);
