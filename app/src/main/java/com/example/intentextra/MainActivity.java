@@ -17,12 +17,20 @@ import android.widget.ToggleButton;
  * 如EditText组件抛出警告：缺少autoFillHints属性，当我加上时又提示只有SDK26+才支持这个属性...
  * 如AndroidMainfest.xml: 会有警告App data will Automatically backup and restored on install
  * 解决方案：Application标签新增属性 android:allowBackup="true"
- * 下次我创建项目一定要选9.0的SDK(模拟器是10.0的，我手机9.0的)
  *  */
 public class MainActivity extends AppCompatActivity {
 
   public static final String TAG = "Activity1 ";
   public static final String EXTRA_MESSAGE_KEY = "com.example.intentextra.message";
+
+  SharedPreferences configSP;
+  boolean isDarkTheme;
+
+  EditText editText;
+  Button button1;
+  Button button2;
+  Button button3;
+  ToggleButton toggleTheme;
 
   public void sendToast(CharSequence Message) {
     Toast.makeText(getApplicationContext(), Message, Toast.LENGTH_SHORT).show();
@@ -31,33 +39,27 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    // setTheme is Before setContentView
-    // 会创建一个名为config.xml的key-value pairs存储文件
-    final SharedPreferences configSP = getSharedPreferences("config", MODE_PRIVATE);
-    final boolean isDarkTheme = configSP.getBoolean("darkTheme", true);
+    configSP = getSharedPreferences("config", MODE_PRIVATE);
     // SharedPreferences获取值的方法都有默认值，不需要通过.contains判断key是否存在
+    isDarkTheme = configSP.getBoolean("darkTheme", true);
     if (isDarkTheme) {
       setTheme(R.style.Theme_AppCompat);
     } else {
       setTheme(R.style.Theme_AppCompat_Light);
     }
-
-    // 设置完主题后，让View的一些文案与当前主题一致，如标题、ToggleButton的状态
+    // setTheme is Before setContentView
     setContentView(R.layout.activity_main);
+    // 设置完主题后，让View的一些文案与当前主题一致，如标题、ToggleButton的状态
+    setTitle(TAG+"当前主题："+(isDarkTheme ? "黑暗主题" : "白色主题"));
     // View初始化完后，让主题的toggleButton状态与isDarkTheme一致
-    ToggleButton toggleTheme = findViewById(R.id.button4);
+    toggleTheme = findViewById(R.id.button4);
     toggleTheme.setChecked(isDarkTheme);
-    // ActionBar title
-    if (isDarkTheme) {
-      setTitle(TAG + "当前主题：深色主题");
-    } else {
-      setTitle(TAG + "当前主题：白色主题");
-    }
 
-    final EditText editText = findViewById(R.id.editText);
-    Button button1 = findViewById(R.id.button1);
-    Button button2 = findViewById(R.id.button2);
-    Button button3 = findViewById(R.id.button3);
+    editText = findViewById(R.id.editText);
+    button1 = findViewById(R.id.button1);
+    button2 = findViewById(R.id.button2);
+    button3 = findViewById(R.id.button3);
+    // 带着数据跳转到Activity2
     button1.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -92,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
-          // setTheme(R.style.Theme_AppCompat);
           // step.1 修改配置
           configSP.edit().putBoolean("darkTheme", true).apply();
           // step.2 如果配置项有变化Reload Activity使主题修改生效
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(getIntent());
           }
         } else {
-          // setTheme(R.style.Theme_AppCompat_Light);
           // step.1 修改配置
           configSP.edit().putBoolean("darkTheme", false).apply();
           // step.2 如果配置项有变化Reload Activity使主题修改生效
