@@ -1,3 +1,7 @@
+TODO 学习jetpack mvvm架构
+
+===
+
 # 我做的第二个APP——几大功能：
 
 ## 1、通过sharedPreference切换黑白主题
